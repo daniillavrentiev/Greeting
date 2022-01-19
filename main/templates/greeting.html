@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% for i in name %}
+        Вітаємо - {{ i.name }}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <h1 class="fw-light">Раді познайомитись з вами</h1>
+    <hr>
+        {% for i in name %}
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <p class="display-4 fw-normal">
+            <h1 class="fw-lighter">Привіт, <strong class="font-monospace">{{ i.name }} {{ i.last_name }}</strong></h1>
+        </p>
+        {% endfor %}
+                <p class="lead fw-lighter">
+                    Раді вітати вас. Дякуємо що долучились до нас,
+                    друзів багато не буває.
+                    Ви також можете побачити всіх наших, і вже також всіх ваших друзів,
+                    скориставшись кнопкою "Знайомства". Шукайте нові знайомства та будьте дружелюбні
+                </p>
+                <a href="{% url 'connection' %}" class="btn btn-outline-primary">Знайомства</a>
+                <a href="/" class="btn btn-outline-primary">На головну</a>
+</div>
+</div>
+{% endblock %}

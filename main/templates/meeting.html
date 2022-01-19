@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% for i in name %}
+        Привіт - {{ i.name }}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <h1 class="fw-light">Здається ми вже знайомі</h1>
+            <hr>
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+            {% for i in name %}
+                <p class="display-4 fw-normal">
+                     <h1 class="fw-lighter">Привіт, <strong class="font-monospace">{{ i.name }}</strong></h1>
+                </p>
+            {% endfor %}
+                {% for i in name %}
+                <p class="lead fw-lighter">
+                    Виходить що ми вже знайомились.
+                    Здається, ми навіть пам'ятаємо коли саме.
+                    Це було {{ i.date }}.
+                    Ти також можешь переглянути список всіх, хто також вже знайом з нами, скориставшись кнопкою "Знайомства"
+                </p>
+                {% endfor %}
+                <a href="{% url 'connection' %}" class="btn btn-outline-primary">Знайомства</a>
+                <a href="/" class="btn btn-outline-primary">На головну</a>
+            </div>
+            <div class="product-device shadow-sm d-none d-md-block"></div>
+            <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+
+{% block title %}
+    Привітайся з нами
+{% endblock %}
+
+{% block content %}
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center text-white bg-dark">
+        <div class="cover-container d-flex p-3 p-lg-5 mx-auto my-5 flex-column">
+            <main class="px-3">
+                <h1 class="fw-lighter text-uppercase font-monospace">Привіт</h1>
+                <p class="lead fw-lighter">Ми раді бачити і вітати тебе на нашому сайті-вітанні,
+                    для того щоб привітатися з нами - натисни "Привітатись".
+                    Скажи нам як тебе звати та свою електронну адресу і ми вже будем знайомі</p>
+                <p class="lead">
+                    <button type="button" class="btn btn-lg btn-secondary fw-bold border-white bg-white text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Привітатись</button>
+                </p>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title nav-link" id="exampleModalLabel">
+                            Лист привітання
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                                <h3 class="text-center nav-link">
+                                    Привітайся з нами
+                                </h3>
+                                <hr>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <div class="badge bg-warning text-wrap" style="width: 20rem;">
+                                      {{ form|crispy }}
+                                    </div>
+                                    <hr>
+                                    <input type="submit" class="btn btn-outline-info" value="Привітатись">
+                                </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </main>
+            <footer class="mt-auto text-white-50">
+                <p>Cover template for
+                    <a href="#" class="text-white">LinkedIn</a>
+                    <a href="#" class="text-white">GitHub</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+{% endblock %}

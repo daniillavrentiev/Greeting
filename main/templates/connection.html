@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Список Всіх
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 class="text-center fw-lighter">Знайомства</h1>
+<div class="container">
+<hr>
+  <div class="row justify-content-md-center">
+    <div class="col-8">
+    {% if users_list %}
+        {% for user in users_list %}
+        <div class="card">
+          <div class="card-header">
+            {{ user.date }}
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ user.name }}</p>
+              <footer class="blockquote-footer">Привітався як <strong class="text-dark">{{ user.name }} {{ user.last_name }}</strong></footer>
+                <footer class="blockquote-footer">Має електронну адресу <strong class="text-dark">{{ user.email }}</strong></footer>
+            </blockquote>
+          </div>
+        </div>
+            <br>
+        {% endfor %}
+        {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="/connection?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for page_number in paginator.page_range %}
+                <span class="page-current">
+                    <li class="page-item"><a class="page-link" href="/connection?page={{ page_number }}"> {{ page_number }}</a></li>
+                </span>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="/connection?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+            </span>
+            <br>
+            </ul>
+        </nav>
+            <br>
+    {% endif %}
+{% else %}
+    <h3>Привітання</h3>
+    <p>З Нам ще ніхто не привітався :(</p>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
