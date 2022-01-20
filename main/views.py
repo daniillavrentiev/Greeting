@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView
+from django.http import Http404
 
 from .models import Greeting
 
@@ -41,7 +42,10 @@ def _response(data, *, status=200):
 class GreetingView(View):
 
     def get(self, request, *args, **kwargs):
-        name = Greeting.objects.filter(id=kwargs['id'])
+        try:
+            name = Greeting.objects.filter(id=kwargs['id'])
+        except:
+            raise Http404('fwaaw')
         context = {'name': name}
         return render(request, 'greeting.html', context=context)
 
